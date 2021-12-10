@@ -15,7 +15,14 @@ class Allergens
 
   def score
     output = []
-    output.push(@allergies[@score])
+    score_array = [128, 64, 32, 16, 8, 4, 2, 1]
+    while @score > 0
+      if @score - score_array[0] >= 0
+        @score -= score_array[0]
+        output.unshift(@allergies[score_array[0]])
+      end
+      score_array.shift
+    end
     output
   end
 end
